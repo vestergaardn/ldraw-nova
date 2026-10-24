@@ -139,6 +139,11 @@ def parser():
     d.add_argument('--force', action='store_true')
     c = commands.add_parser('manual', help='Study any source submodel through build pages and export it for an atlas')
     m = c.add_subparsers(dest='manual_command', required=True)
+    d = m.add_parser('pdf', help='Create a printable assembly booklet from saved model steps')
+    d.add_argument('file')
+    d.add_argument('--output', required=True)
+    d.add_argument('--title')
+    d.add_argument('--max-instances', type=positive, default=2000)
     d = m.add_parser('prepare', help='Extract a source assembly and make attributed step manuals')
     d.add_argument('file')
     d.add_argument('--section', required=True)
@@ -376,6 +381,10 @@ def run(args):
             return brief, 0
         return export_spaceship(args.name, args.outdir, force=args.force), 0
     if args.command == 'manual':
+        if args.manual_command == 'pdf':
+            from .booklet import create_booklet
+            return create_booklet(args.file, args.output, parts, title=args.title,
+                                  max_instances=args.max_instances), 0
         from .manuals import prepare_manual, review_manual, export_manual
         if args.manual_command == 'prepare':
             notes = json.loads(Path(args.notes).read_text()) if args.notes else None
