@@ -216,8 +216,8 @@ def write_pdf(folder, manual, parts, target):
                 (f"Make {copies} copies. Parts below are for one copy." if copies > 1 else
                  f"Build sequence {step_index} of {total_steps} / add the highlighted pieces"))
             for i, view in enumerate(manual['views'][:2]):
-                booklet.image(folder / step['images'][view], MARGIN, top - 148 - i * 149, WIDTH, 144)
-                booklet.text('ANGLE VIEW' if view == 'home' else 'REAR VIEW', MARGIN, top - 134 - i * 149,
+                booklet.image(folder / step['images'][view], MARGIN, top - 132 - i * 149, WIDTH, 128)
+                booklet.text('ANGLE VIEW' if view == 'home' else 'REAR VIEW', MARGIN, top - 137 - i * 149,
                              WIDTH, 7, color=MUTED)
             row_top = top - 307
             for item in items[:3]:
