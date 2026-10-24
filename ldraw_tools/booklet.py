@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from xml.sax.saxutils import escape
+from PIL import Image, ImageChops
 
 from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
@@ -131,8 +132,23 @@ class Booklet:
         return top
 
     def image(self, path, x, bottom, width, height):
-        self.pdf.drawImage(str(path), x, bottom, width=width, height=height,
-                           preserveAspectRatio=True, anchor='c', mask='auto', anchorAtXY=False)
+        # Fit the CAD figure, not its empty renderer margins. Keep the original
+        # raster untouched; the PDF clips and positions it inside the figure box.
+        with Image.open(path) as source:
+            rgb = source.convert('RGB')
+            bounds = ImageChops.difference(rgb, Image.new('RGB', rgb.size, 'white')).getbbox()
+            iw, ih = rgb.size
+        left, top, right, low = bounds or (0, 0, iw, ih)
+        scale = min((width - 16) / max(1, right - left), (height - 12) / max(1, low - top))
+        c = self.pdf
+        c.saveState()
+        clip = c.beginPath()
+        clip.rect(x, bottom, width, height)
+        c.clipPath(clip, stroke=0, fill=0)
+        draw_x = x + (width - (right - left) * scale) / 2 - left * scale
+        draw_y = bottom + (height - (low - top) * scale) / 2 - (ih - low) * scale
+        c.drawImage(str(path), draw_x, draw_y, width=iw * scale, height=ih * scale, mask='auto')
+        c.restoreState()
 
     def end(self):
         self.pdf.showPage()
@@ -208,7 +224,8 @@ def write_pdf(folder, manual, parts, target):
                 colour = parts.colours_by_code.get(item['colour'])
                 colour_name = getattr(colour, 'name', str(item['colour']))
                 desc = labels[item['source_section']] + ' (built earlier)' if item['kind'] == 'submodel' else item['description']
-                booklet.row(item, row_top, clean(colour_name), description=desc)
+                booklet.row(item, row_top, clean(colour_name), description=desc,
+                            part_id=labels.get(item.get('source_section')))
                 row_top -= 49
             booklet.end()
             for start in range(3, len(items), 8):
@@ -216,7 +233,8 @@ def write_pdf(folder, manual, parts, target):
                 for item in items[start:start + 8]:
                     colour = parts.colours_by_code.get(item['colour'])
                     desc = labels[item['source_section']] + ' (built earlier)' if item['kind'] == 'submodel' else item['description']
-                    booklet.row(item, top, clean(getattr(colour, 'name', str(item['colour']))), description=desc)
+                    booklet.row(item, top, clean(getattr(colour, 'name', str(item['colour']))), description=desc,
+                                part_id=labels.get(item.get('source_section')))
                     top -= 49
                 booklet.end()
 
