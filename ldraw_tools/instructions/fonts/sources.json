@@ -1,0 +1,32 @@
+[
+  {
+    "name": "DESCRIPTION.en_us.html",
+    "sha": "3cb6f89d2d6340fdc4948cd630c985b15667ecd9",
+    "download_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/outfit/DESCRIPTION.en_us.html",
+    "html_url": "https://github.com/google/fonts/blob/main/ofl/outfit/DESCRIPTION.en_us.html"
+  },
+  {
+    "name": "METADATA.pb",
+    "sha": "a74603f110557fc9ddcd23d93dd89ce4b6ef8e2a",
+    "download_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/outfit/METADATA.pb",
+    "html_url": "https://github.com/google/fonts/blob/main/ofl/outfit/METADATA.pb"
+  },
+  {
+    "name": "OFL.txt",
+    "sha": "723cd447edee83ed3bb07c3343f478d352aa7440",
+    "download_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/outfit/OFL.txt",
+    "html_url": "https://github.com/google/fonts/blob/main/ofl/outfit/OFL.txt"
+  },
+  {
+    "name": "Outfit[wght].ttf",
+    "sha": "466d6245f9582df39bf73da91a8b3c938fd061cd",
+    "download_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/outfit/Outfit%5Bwght%5D.ttf",
+    "html_url": "https://github.com/google/fonts/blob/main/ofl/outfit/Outfit[wght].ttf"
+  },
+  {
+    "name": "upstream_info.md",
+    "sha": "7be3135e8e375613218bb204730f84005c58d2f0",
+    "download_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/outfit/upstream_info.md",
+    "html_url": "https://github.com/google/fonts/blob/main/ofl/outfit/upstream_info.md"
+  }
+]

@@ -6,6 +6,8 @@ import math
 import csv
 import hashlib
 import re
+import json
+import os
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -37,32 +39,63 @@ def render_steps(path, library, outdir, *, steps, views=("home", "back"), timeou
         raise ValueError('Choose distinct supported viewpoints')
     outdir = Path(outdir).resolve()
     outdir.mkdir(parents=True, exist_ok=True)
+    from .common import atomic_write
+    config = Path(os.environ.get('XDG_CONFIG_HOME', '/nonexistent')) / 'LeoCAD Software/LeoCAD.conf'
+    config_bytes = config.read_bytes() if config.is_file() else b'default'
+    library = Path(library).resolve()
+    library_key = '|'.join(str((library/name).stat().st_mtime_ns) if (library/name).exists() else ''
+                           for name in ['parts.lst','LDConfig.ldr','parts'])
     images = []
-    with TemporaryDirectory(prefix='.steps-', dir=outdir) as temp:
-        prepared, lib, _ = cad_source(path, library, temp)
-        for view in views:
-            target = Path(temp)/f'{view}.png'
-            camera = view_camera(bounds, view) if bounds is not None else ['--viewpoint',view]
-            result = subprocess.run(['leocad', '-l', str(lib), '-i', str(target),
-                '--from', str(min(steps)), '--to', str(max(steps)), *camera,
-                '-w', '1000', '-h', '750', '--aa-samples', '4', '--shading', 'full',
-                '--highlight', '--no-fade-steps', '--line-width', '1', str(prepared)],
-                capture_output=True, text=True, timeout=timeout)
-            if result.returncode:
-                raise ValueError(f'LeoCAD step rendering failed: {result.stdout}\n{result.stderr}')
-            found = {}
-            for candidate in Path(temp).glob(view+'*.png'):
-                match = re.fullmatch(re.escape(view)+r'(\d+)\.png', candidate.name)
-                if match:
-                    found[int(match[1])] = candidate
-                elif candidate == target and len(steps) == 1:
-                    found[steps[0]] = candidate
-            if any(n not in found for n in steps):
-                raise ValueError(f'LeoCAD did not render every requested {view} step')
-            for number in steps:
-                name = f'step-{number:03}-{view}.png'
-                found[number].replace(outdir/name)
-                images.append(dict(step=number, view=view, file=name))
+    for view in views:
+        camera = view_camera(bounds, view) if bounds is not None else ['--viewpoint',view]
+        digest = hashlib.sha256(Path(path).read_bytes()+config_bytes+json.dumps(
+            ['resumable-v5', str(library), library_key, camera, steps]).encode()).hexdigest()
+        manifest_path = outdir/f'.render-{view}.json'
+        try:
+            cached = json.loads(manifest_path.read_text())
+        except (OSError, ValueError):
+            cached = {}
+        if cached.get('key') != digest:
+            cached = {'key':digest, 'images':{}}
+        missing=[]
+        for number in steps:
+            name = f'step-{number:03}-{view}.png'
+            target=outdir/name
+            if not target.is_file() or cached['images'].get(name)!=hashlib.sha256(target.read_bytes()).hexdigest():
+                missing.append(number)
+            images.append(dict(step=number, view=view, file=name))
+        # Commit each bounded chunk. An interruption only repeats unfinished chunks.
+        for offset in range(0,len(missing),8):
+            chunk=missing[offset:offset+8]
+            # Avoid rendering a huge range when cached steps leave gaps.
+            groups=[]
+            for n in chunk:
+                if not groups or n > groups[-1][-1]+1: groups.append([])
+                groups[-1].append(n)
+            for group in groups:
+                with TemporaryDirectory(prefix='.steps-', dir=outdir) as temp:
+                    prepared,lib,_=cad_source(path,library,temp)
+                    target=Path(temp)/f'{view}.png'
+                    result=subprocess.run(['leocad','-l',str(lib),'-i',str(target),
+                        '--from',str(min(group)),'--to',str(max(group)),*camera,
+                        '-w','1000','-h','750','--aa-samples','4','--shading','default',
+                        '--no-highlight','--no-fade-steps','--orthographic','--line-width','4',
+                        '--stud-style','6','--edge-color','#FF191716','--black-edge-color','#FF191716','--dark-edge-color','#FF191716',str(prepared)],
+                        capture_output=True,text=True,timeout=max(timeout,180))
+                    if result.returncode:
+                        raise ValueError(f'LeoCAD step rendering failed: {result.stdout}\n{result.stderr}')
+                    found={}
+                    for candidate in Path(temp).glob(view+'*.png'):
+                        match=re.fullmatch(re.escape(view)+r'(\d+)\.png',candidate.name)
+                        if match:found[int(match[1])]=candidate
+                        elif candidate==target and len(group)==1:found[group[0]]=candidate
+                    if any(n not in found for n in group):
+                        raise ValueError(f'LeoCAD did not render every requested {view} step')
+                    for number in group:
+                        name=f'step-{number:03}-{view}.png'
+                        found[number].replace(outdir/name)
+                        cached['images'][name]=hashlib.sha256((outdir/name).read_bytes()).hexdigest()
+                    atomic_write(manifest_path,json.dumps(cached)+'\n')
     return images
 
 
@@ -204,7 +237,7 @@ def prepare_glb(path, library, output, parts, *, timeout=180):
                 note="Preview maps unresolved colour 16 to Pearl Dark Grey. In source, 16 means inherited current colour. MPD remains authoritative.")
 
 
-def render(path, library, outdir, *, views=("home", "top", "front"), timeout=90, bounds=None):
+def render(path, library, outdir, *, views=("home", "top", "front"), timeout=90, bounds=None, orthographic=False):
     outdir = Path(outdir).resolve()
     outdir.mkdir(parents=True, exist_ok=True)
     results = []
@@ -218,6 +251,10 @@ def render(path, library, outdir, *, views=("home", "top", "front"), timeout=90,
             command = ["leocad", "-l", str(library), "-i", str(target), "-w", "1000", "-h", "800",
                        "--aa-samples", "4", "--shading", "full", "--line-width", "1",
                        "--no-highlight", "--no-fade-steps", str(Path(path).resolve())]
+            if orthographic:
+                command[command.index('--shading')+1]='default'
+                command[command.index('--line-width')+1]='4'
+                command += ['--orthographic','--stud-style','6','--edge-color','#FF191716','--black-edge-color','#FF191716','--dark-edge-color','#FF191716']
             if bounds is None:
                 command += ["--viewpoint", view]
             if bounds is not None:

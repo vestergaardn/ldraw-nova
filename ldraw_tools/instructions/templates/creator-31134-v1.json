@@ -1,0 +1,142 @@
+{
+  "id": "creator-31134",
+  "version": 1,
+  "reference": {
+    "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6457824.pdf",
+    "sha256": "d4de596a11da68a6a92e7b364f1b777ecdb0d062fd47943df5c9470a60985ea6"
+  },
+  "fidelity_status": "not_exact",
+  "page": {
+    "width": 382.677001953125,
+    "height": 289.1340026855469,
+    "units": "pt",
+    "origin": "top-left"
+  },
+  "colors": {
+    "paper": [
+      0.8309758305549622,
+      0.9289997816085815,
+      0.9889982342720032
+    ],
+    "parts": [
+      0.697001576423645,
+      0.8429999351501465,
+      0.9539787769317627
+    ],
+    "ink": [
+      0.0941176488995552,
+      0.09018082171678543,
+      0.08625925332307816
+    ],
+    "inset": [
+      1.0,
+      0.9600061178207397,
+      0.7960021495819092
+    ],
+    "progress": [
+      0.5140001774,
+      0.6439917684,
+      0.8409857154
+    ],
+    "arrow": [
+      0.89,
+      0.0,
+      0.042
+    ]
+  },
+  "typography": {
+    "step": {
+      "family": "Outfit-Medium",
+      "size": 26
+    },
+    "quantity": {
+      "family": "Outfit-Medium",
+      "size": 8
+    },
+    "inset": {
+      "family": "Outfit-Medium",
+      "size": 16
+    },
+    "page": {
+      "family": "Outfit-Medium",
+      "size": 10
+    },
+    "inventory": {
+      "family": "Outfit-Medium",
+      "size": 6
+    },
+    "cover": {
+      "family": "Outfit-Bold",
+      "size": 14
+    },
+    "legal": {
+      "family": "Outfit-Regular",
+      "size": 6.4
+    }
+  },
+  "components": {
+    "parts_box": {
+      "x_even": 14.173,
+      "x_odd": 34.016,
+      "top": 14.173,
+      "radius": 7.087,
+      "border": 0.75
+    },
+    "page_number": {
+      "left": 14.173,
+      "right": 368.504,
+      "baseline": 274.961
+    },
+    "progress": {
+      "bottom_margin": 11.0,
+      "height": 2.0
+    },
+    "assembly_inset": {
+      "radius": 7.087,
+      "border": 0.75
+    },
+    "inventory": {
+      "columns": 5,
+      "column_origins": [
+        14.1732,
+        72.4603,
+        130.7474,
+        193.3545,
+        268.3816
+      ],
+      "layout": "content-sized columns"
+    }
+  },
+  "calibration": {
+    "pages": [
+      1,
+      2,
+      3,
+      14,
+      17,
+      28,
+      34,
+      36
+    ],
+    "dpi": [
+      72,
+      144
+    ],
+    "required_changed_pixels": 0
+  },
+  "font_substitution": {
+    "family": "Outfit",
+    "license": "SIL Open Font License 1.1",
+    "reason": "User approved a free alternative",
+    "reference_family": "Cera Pro",
+    "comparison": "docs/instructions/font-comparison.json"
+  },
+  "provisional_measurements": [
+    "parts_box.radius",
+    "parts_box.border",
+    "assembly_inset.radius",
+    "assembly_inset.border",
+    "progress.bottom_margin",
+    "progress.height"
+  ]
+}

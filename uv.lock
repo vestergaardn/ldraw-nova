@@ -213,6 +213,7 @@ dependencies = [
     { name = "jsonschema" },
     { name = "numpy" },
     { name = "pyldraw3" },
+    { name = "pypdf" },
     { name = "reportlab" },
 ]
 
@@ -227,6 +228,7 @@ requires-dist = [
     { name = "jsonschema", specifier = "==4.26.0" },
     { name = "numpy", specifier = "==2.5.2" },
     { name = "pyldraw3", specifier = "==1.7.0" },
+    { name = "pypdf", specifier = "==6.12.0" },
     { name = "pypdf", marker = "extra == 'test'", specifier = "==6.12.0" },
     { name = "pytest", marker = "extra == 'test'", specifier = "==9.1.1" },
     { name = "reportlab", specifier = "==4.4.10" },

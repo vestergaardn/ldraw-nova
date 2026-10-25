@@ -258,30 +258,57 @@ def write_pdf(folder, manual, parts, target):
     return booklet.pages
 
 
-def create_booklet(source, output, parts, *, title=None, max_instances=2000):
+def create_booklet(source, output, parts, *, title=None, max_instances=10000,
+                   template='creator-31134', improve=True, print_format='native', workdir=None):
+    import hashlib
+    import shutil
+    from .instructions.plan import improve_source, geometry_signature, make_plan, VERSION as PLAN_VERSION
+    from .instructions.layout import load_template, part_icons, write_creator, impose_letter
+    from .manuals import current_manual
     source, output = Path(source).resolve(), Path(output).resolve()
     if output == source or output.suffix.lower() != '.pdf':
         raise ValueError('Choose a separate .pdf output file')
-    model = parse_source(source)
-    assemblies = [s for s in dependency_closure(model) if not is_part(s)]
-    if not assemblies or sum(len(s.steps) for s in assemblies) > 250:
-        raise ValueError('Choose an assembly with at most 250 saved steps')
-    if any(len(s.pieces) > 1 and len([step for step in s.steps if step]) < 2 for s in assemblies):
-        # Single-step subassemblies are useful, but a whole unsequenced model is not.
-        if len(assemblies) == 1:
-            raise ValueError('This model has no assembly sequence. Ask the model agent to add building steps first.')
+    if print_format not in {'native','letter'}:
+        raise ValueError('Choose native or letter print format')
+    definition=load_template(template)
+    original=source.read_text(encoding='utf-8-sig')
+    revised,changes=improve_source(original) if improve else (original,[])
     output.parent.mkdir(parents=True, exist_ok=True)
-    with TemporaryDirectory(prefix='.booklet-', dir=output.parent) as temporary:
-        temp = Path(temporary)
-        with print_renderer_config(temp / 'render-config'):
-            manual = prepare_manual(source, model.name, temp / 'manual', parts,
-                title=title or model.description or source.stem, colour=7,
-                views=('home', 'back'), kind='construction', max_instances=max_instances)
+    work=Path(workdir).resolve() if workdir else output.parent/(output.stem+'.work')
+    if source.is_relative_to(work):raise ValueError('Keep the source outside the rendering work folder')
+    key=hashlib.sha256((str(PLAN_VERSION)+json.dumps(definition,sort_keys=True)+str(improve)+original).encode()).hexdigest()
+    temp=work/key;temp.mkdir(parents=True,exist_ok=True)
+    snapshot=temp/'source.mpd';atomic_write(snapshot,revised)
+    if geometry_signature(original)!=geometry_signature(revised):raise ValueError('Model geometry changed')
+    model=parse_source(snapshot)
+    assemblies=[s for s in dependency_closure(model) if not is_part(s)]
+    if not assemblies or sum(len(s.steps) for s in assemblies)>2500:
+        raise ValueError('Choose an assembly with at most 2,500 instruction steps')
+    if not improve and len(assemblies)==1 and len(assemblies[0].pieces)>1 and len([s for s in assemblies[0].steps if s])<2:
+        raise ValueError('This model has no saved sequence. Enable instruction improvement to split it into steps.')
+    with print_renderer_config(temp/'render-config'):
+        try:
+            _,manual=current_manual(temp/'manual')
+        except (OSError,ValueError,KeyError):
+            manual=prepare_manual(snapshot,model.name,temp/'manual',parts,
+                title=title or model.description or source.stem,colour=7,
+                views=('home','back','top'),kind='construction',max_instances=max_instances,force=True)
         if not manual['source_checks_passed'] or manual['bom_matches'] is not True:
             raise ValueError('The model failed source or rendered parts-list checks. Fix it before printing.')
-        pdf = temp / 'booklet.pdf'
-        pages = write_pdf(temp / 'manual', manual, parts, pdf)
-        pdf.replace(output)
-    return dict(output=str(output), pages=pages, parts=manual['physical_placements'],
-                steps=sum(len(s['steps']) for s in manual['sections']),
-                source_checks_passed=True, bom_matches=True, physical_validity='not_proven')
+        icons=part_icons(temp/'manual',manual,parts)
+    plan=make_plan(source,manual,temp/'manual',template=definition,improve=improve,changes=changes)
+    native=temp/'native.pdf';letter=temp/'letter.pdf'
+    pages=write_creator(temp/'manual',manual,parts,native,plan,definition,icons)
+    imposition=impose_letter(native,letter)
+    plan.save(temp/'instruction-plan.json')
+    atomic_write(temp/'print-settings.json',json.dumps(imposition,indent=2)+'\n')
+    staging=output.with_suffix('.tmp.pdf')
+    shutil.copyfile(letter if print_format=='letter' else native,staging);staging.replace(output)
+    shutil.copyfile(temp/'instruction-plan.json',output.with_suffix('.plan.json'))
+    return dict(output=str(output),pages=len(imposition['page_order']) if print_format=='letter' else pages,
+                native_pages=pages,parts=manual['physical_placements'],
+                steps=sum(len(s['steps']) for s in manual['sections']),template=definition['id'],
+                template_version=definition['version'],plan_version=PLAN_VERSION,print_format=print_format,
+                native_pdf=str(native),letter_pdf=str(letter),plan=str(output.with_suffix('.plan.json')),
+                geometry_preserved=True,source_checks_passed=True,bom_matches=True,
+                fidelity='not_exact',font='Outfit',physical_validity='not_proven')

@@ -1,0 +1,1849 @@
+{
+  "reference_sha256": "d4de596a11da68a6a92e7b364f1b777ecdb0d062fd47943df5c9470a60985ea6",
+  "renderer": "pdftoppm version 26.10.0",
+  "dpi": 288,
+  "method": "Threshold RGB<150, crop to visible ink, best translation within 3 pixels, intersection over union; no size scaling or font extraction. Equal sample weights. The mask score is not a page fidelity percentage. Cover bold overlay excluded.",
+  "sample_count": 40,
+  "results": [
+    {
+      "family": "outfit",
+      "mean_ink_iou": 0.64041,
+      "step_ink_iou": 0.71705,
+      "mean_absolute_width_error_pct": 3.59,
+      "samples": [
+        {
+          "text": "1",
+          "page": 2,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.76777,
+          "width_difference_pct": -7.407,
+          "height_difference_pct": 4.348
+        },
+        {
+          "text": "2",
+          "page": 2,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.63768,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "1x",
+          "page": 3,
+          "role": "Medium",
+          "size": 8.0,
+          "ink_iou": 0.6971,
+          "width_difference_pct": -7.407,
+          "height_difference_pct": 4.762
+        },
+        {
+          "text": "2",
+          "page": 3,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.68302,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 5.797
+        },
+        {
+          "text": "3",
+          "page": 3,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.67279,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "3",
+          "page": 4,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.72588,
+          "width_difference_pct": -2.041,
+          "height_difference_pct": 4.286
+        },
+        {
+          "text": "4",
+          "page": 4,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.79476,
+          "width_difference_pct": 4.762,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "4",
+          "page": 5,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.7616,
+          "width_difference_pct": 1.818,
+          "height_difference_pct": 5.882
+        },
+        {
+          "text": "5",
+          "page": 5,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.67883,
+          "width_difference_pct": 5.556,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "5",
+          "page": 6,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.71878,
+          "width_difference_pct": -2.0,
+          "height_difference_pct": 4.286
+        },
+        {
+          "text": "6",
+          "page": 6,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.73004,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "6",
+          "page": 7,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.7483,
+          "width_difference_pct": 6.25,
+          "height_difference_pct": 4.286
+        },
+        {
+          "text": "7",
+          "page": 7,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.67839,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "7",
+          "page": 8,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.58794,
+          "width_difference_pct": 2.128,
+          "height_difference_pct": 4.348
+        },
+        {
+          "text": "8",
+          "page": 8,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.75884,
+          "width_difference_pct": -5.263,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "8",
+          "page": 9,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.79437,
+          "width_difference_pct": -2.0,
+          "height_difference_pct": 4.225
+        },
+        {
+          "text": "1",
+          "page": 9,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.74103,
+          "width_difference_pct": -11.765,
+          "height_difference_pct": 7.143
+        },
+        {
+          "text": "2",
+          "page": 9,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.67638,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 4.651
+        },
+        {
+          "text": "9",
+          "page": 9,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.7191,
+          "width_difference_pct": 5.263,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "9",
+          "page": 10,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.74475,
+          "width_difference_pct": 6.25,
+          "height_difference_pct": 4.286
+        },
+        {
+          "text": "2x",
+          "page": 10,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.69655,
+          "width_difference_pct": -4.545,
+          "height_difference_pct": 4.651
+        },
+        {
+          "text": "10",
+          "page": 10,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.56405,
+          "width_difference_pct": -5.263,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "13",
+          "page": 14,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.71986,
+          "width_difference_pct": -2.326,
+          "height_difference_pct": 4.286
+        },
+        {
+          "text": "14",
+          "page": 14,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.68916,
+          "width_difference_pct": -5.405,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "16",
+          "page": 17,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.73348,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 5.797
+        },
+        {
+          "text": "17",
+          "page": 17,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.67742,
+          "width_difference_pct": -5.882,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "27",
+          "page": 28,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.61884,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 5.797
+        },
+        {
+          "text": "28",
+          "page": 28,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.64039,
+          "width_difference_pct": -4.762,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "2x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.60795,
+          "width_difference_pct": -8.0,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "4504369",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.58815,
+          "width_difference_pct": -2.062,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "302401",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.57699,
+          "width_difference_pct": -2.532,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "4x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.62733,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 13.333
+        },
+        {
+          "text": "6258135",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.38329,
+          "width_difference_pct": -5.556,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "6174937",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.61102,
+          "width_difference_pct": 1.176,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "1x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.64394,
+          "width_difference_pct": -9.524,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "4160857",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.5788,
+          "width_difference_pct": -2.198,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "de commerce du/",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.26357,
+          "width_difference_pct": -7.512,
+          "height_difference_pct": -13.043
+        },
+        {
+          "text": "LEGO and the LEGO logo are trademarks of the/sont des marques d",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.31447,
+          "width_difference_pct": -2.273,
+          "height_difference_pct": -4.0
+        },
+        {
+          "text": "son marcas registradas de LEGO Group. \u00a92023 The LEGO Group.",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.24014,
+          "width_difference_pct": -1.309,
+          "height_difference_pct": -4.167
+        },
+        {
+          "text": "6457824",
+          "page": 36,
+          "role": "Regular",
+          "size": 8.0,
+          "ink_iou": 0.52377,
+          "width_difference_pct": 3.361,
+          "height_difference_pct": 4.545
+        }
+      ]
+    },
+    {
+      "family": "jost",
+      "mean_ink_iou": 0.57005,
+      "step_ink_iou": 0.62484,
+      "mean_absolute_width_error_pct": 4.951,
+      "samples": [
+        {
+          "text": "1",
+          "page": 2,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.77708,
+          "width_difference_pct": -7.407,
+          "height_difference_pct": 7.246
+        },
+        {
+          "text": "2",
+          "page": 2,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.6259,
+          "width_difference_pct": 5.263,
+          "height_difference_pct": 11.538
+        },
+        {
+          "text": "1x",
+          "page": 3,
+          "role": "Medium",
+          "size": 8.0,
+          "ink_iou": 0.67857,
+          "width_difference_pct": -7.407,
+          "height_difference_pct": 9.524
+        },
+        {
+          "text": "2",
+          "page": 3,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.625,
+          "width_difference_pct": 6.122,
+          "height_difference_pct": 7.246
+        },
+        {
+          "text": "3",
+          "page": 3,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.5438,
+          "width_difference_pct": -5.263,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "3",
+          "page": 4,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.49845,
+          "width_difference_pct": -6.122,
+          "height_difference_pct": 7.143
+        },
+        {
+          "text": "4",
+          "page": 4,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.4652,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "4",
+          "page": 5,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.48364,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 7.353
+        },
+        {
+          "text": "5",
+          "page": 5,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.61957,
+          "width_difference_pct": 11.111,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "5",
+          "page": 6,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.62135,
+          "width_difference_pct": 4.0,
+          "height_difference_pct": 5.714
+        },
+        {
+          "text": "6",
+          "page": 6,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.66284,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "6",
+          "page": 7,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.6928,
+          "width_difference_pct": 4.167,
+          "height_difference_pct": 5.714
+        },
+        {
+          "text": "7",
+          "page": 7,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.77966,
+          "width_difference_pct": 5.263,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "7",
+          "page": 8,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.74841,
+          "width_difference_pct": 8.511,
+          "height_difference_pct": 5.797
+        },
+        {
+          "text": "8",
+          "page": 8,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.73115,
+          "width_difference_pct": -5.263,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "8",
+          "page": 9,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.74666,
+          "width_difference_pct": -10.0,
+          "height_difference_pct": 5.634
+        },
+        {
+          "text": "1",
+          "page": 9,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.80159,
+          "width_difference_pct": -5.882,
+          "height_difference_pct": 7.143
+        },
+        {
+          "text": "2",
+          "page": 9,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.65186,
+          "width_difference_pct": 3.333,
+          "height_difference_pct": 6.977
+        },
+        {
+          "text": "9",
+          "page": 9,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.65779,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "9",
+          "page": 10,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.68442,
+          "width_difference_pct": 4.167,
+          "height_difference_pct": 5.714
+        },
+        {
+          "text": "2x",
+          "page": 10,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.56082,
+          "width_difference_pct": -7.576,
+          "height_difference_pct": 6.977
+        },
+        {
+          "text": "10",
+          "page": 10,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.64211,
+          "width_difference_pct": -2.632,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "13",
+          "page": 14,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.47325,
+          "width_difference_pct": 4.651,
+          "height_difference_pct": 7.143
+        },
+        {
+          "text": "14",
+          "page": 14,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.55204,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "16",
+          "page": 17,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.57187,
+          "width_difference_pct": 5.682,
+          "height_difference_pct": 8.696
+        },
+        {
+          "text": "17",
+          "page": 17,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.53708,
+          "width_difference_pct": 5.882,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "27",
+          "page": 28,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.57519,
+          "width_difference_pct": 6.731,
+          "height_difference_pct": 7.246
+        },
+        {
+          "text": "28",
+          "page": 28,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.60656,
+          "width_difference_pct": -2.381,
+          "height_difference_pct": 11.538
+        },
+        {
+          "text": "2x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.46486,
+          "width_difference_pct": -12.0,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "4504369",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.44201,
+          "width_difference_pct": -3.093,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "302401",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.48734,
+          "width_difference_pct": -3.797,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "4x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.41111,
+          "width_difference_pct": -8.0,
+          "height_difference_pct": 13.333
+        },
+        {
+          "text": "6258135",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.61347,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "6174937",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.38966,
+          "width_difference_pct": 4.706,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "1x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.57463,
+          "width_difference_pct": -9.524,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "4160857",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.53125,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "de commerce du/",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.31254,
+          "width_difference_pct": -7.981,
+          "height_difference_pct": 4.348
+        },
+        {
+          "text": "LEGO and the LEGO logo are trademarks of the/sont des marques d",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.24302,
+          "width_difference_pct": -6.313,
+          "height_difference_pct": 4.0
+        },
+        {
+          "text": "son marcas registradas de LEGO Group. \u00a92023 The LEGO Group.",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.22201,
+          "width_difference_pct": -4.45,
+          "height_difference_pct": 8.333
+        },
+        {
+          "text": "6457824",
+          "page": 36,
+          "role": "Regular",
+          "size": 8.0,
+          "ink_iou": 0.49529,
+          "width_difference_pct": 3.361,
+          "height_difference_pct": 4.545
+        }
+      ]
+    },
+    {
+      "family": "poppins",
+      "mean_ink_iou": 0.51371,
+      "step_ink_iou": 0.5137,
+      "mean_absolute_width_error_pct": 6.489,
+      "samples": [
+        {
+          "text": "1",
+          "page": 2,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.50863,
+          "width_difference_pct": -22.222,
+          "height_difference_pct": 10.145
+        },
+        {
+          "text": "2",
+          "page": 2,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.59568,
+          "width_difference_pct": 5.263,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "1x",
+          "page": 3,
+          "role": "Medium",
+          "size": 8.0,
+          "ink_iou": 0.75197,
+          "width_difference_pct": -7.407,
+          "height_difference_pct": 9.524
+        },
+        {
+          "text": "2",
+          "page": 3,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.63878,
+          "width_difference_pct": 4.082,
+          "height_difference_pct": 10.145
+        },
+        {
+          "text": "3",
+          "page": 3,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.50299,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "3",
+          "page": 4,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.45568,
+          "width_difference_pct": 4.082,
+          "height_difference_pct": 11.429
+        },
+        {
+          "text": "4",
+          "page": 4,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.56869,
+          "width_difference_pct": 9.524,
+          "height_difference_pct": 11.538
+        },
+        {
+          "text": "4",
+          "page": 5,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.61067,
+          "width_difference_pct": 7.273,
+          "height_difference_pct": 10.294
+        },
+        {
+          "text": "5",
+          "page": 5,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.52924,
+          "width_difference_pct": 11.111,
+          "height_difference_pct": 11.538
+        },
+        {
+          "text": "5",
+          "page": 6,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.52872,
+          "width_difference_pct": 4.0,
+          "height_difference_pct": 8.571
+        },
+        {
+          "text": "6",
+          "page": 6,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.45745,
+          "width_difference_pct": 5.263,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "6",
+          "page": 7,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.42567,
+          "width_difference_pct": 8.333,
+          "height_difference_pct": 11.429
+        },
+        {
+          "text": "7",
+          "page": 7,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.72195,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 11.538
+        },
+        {
+          "text": "7",
+          "page": 8,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.51938,
+          "width_difference_pct": 6.383,
+          "height_difference_pct": 10.145
+        },
+        {
+          "text": "8",
+          "page": 8,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.5804,
+          "width_difference_pct": 10.526,
+          "height_difference_pct": 19.231
+        },
+        {
+          "text": "8",
+          "page": 9,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.58945,
+          "width_difference_pct": 8.0,
+          "height_difference_pct": 11.268
+        },
+        {
+          "text": "1",
+          "page": 9,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.65,
+          "width_difference_pct": -23.529,
+          "height_difference_pct": 11.905
+        },
+        {
+          "text": "2",
+          "page": 9,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.66753,
+          "width_difference_pct": 3.333,
+          "height_difference_pct": 9.302
+        },
+        {
+          "text": "9",
+          "page": 9,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.48257,
+          "width_difference_pct": 5.263,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "9",
+          "page": 10,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.50493,
+          "width_difference_pct": 6.25,
+          "height_difference_pct": 11.429
+        },
+        {
+          "text": "2x",
+          "page": 10,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.65428,
+          "width_difference_pct": -3.03,
+          "height_difference_pct": 11.628
+        },
+        {
+          "text": "10",
+          "page": 10,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.71291,
+          "width_difference_pct": -7.895,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "13",
+          "page": 14,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.44787,
+          "width_difference_pct": 1.163,
+          "height_difference_pct": 11.429
+        },
+        {
+          "text": "14",
+          "page": 14,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.49071,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 11.538
+        },
+        {
+          "text": "16",
+          "page": 17,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.40556,
+          "width_difference_pct": 3.409,
+          "height_difference_pct": 13.043
+        },
+        {
+          "text": "17",
+          "page": 17,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.44662,
+          "width_difference_pct": -2.941,
+          "height_difference_pct": 11.538
+        },
+        {
+          "text": "27",
+          "page": 28,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.5291,
+          "width_difference_pct": 4.808,
+          "height_difference_pct": 11.594
+        },
+        {
+          "text": "28",
+          "page": 28,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.58506,
+          "width_difference_pct": 4.762,
+          "height_difference_pct": 19.231
+        },
+        {
+          "text": "2x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.61194,
+          "width_difference_pct": -4.0,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "4504369",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.38407,
+          "width_difference_pct": 7.216,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "302401",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.5968,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "4x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.64362,
+          "width_difference_pct": 4.0,
+          "height_difference_pct": 13.333
+        },
+        {
+          "text": "6258135",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.45967,
+          "width_difference_pct": 4.444,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "6174937",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.26384,
+          "width_difference_pct": 9.412,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "1x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.73469,
+          "width_difference_pct": -9.524,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "4160857",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.45103,
+          "width_difference_pct": 6.593,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "de commerce du/",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.23655,
+          "width_difference_pct": 8.92,
+          "height_difference_pct": 21.739
+        },
+        {
+          "text": "LEGO and the LEGO logo are trademarks of the/sont des marques d",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.19503,
+          "width_difference_pct": 7.828,
+          "height_difference_pct": 24.0
+        },
+        {
+          "text": "son marcas registradas de LEGO Group. \u00a92023 The LEGO Group.",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.17747,
+          "width_difference_pct": 6.021,
+          "height_difference_pct": 8.333
+        },
+        {
+          "text": "6457824",
+          "page": 36,
+          "role": "Regular",
+          "size": 8.0,
+          "ink_iou": 0.23107,
+          "width_difference_pct": 11.765,
+          "height_difference_pct": 13.636
+        }
+      ]
+    },
+    {
+      "family": "urbanist",
+      "mean_ink_iou": 0.46294,
+      "step_ink_iou": 0.47918,
+      "mean_absolute_width_error_pct": 9.916,
+      "samples": [
+        {
+          "text": "1",
+          "page": 2,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.18066,
+          "width_difference_pct": -44.444,
+          "height_difference_pct": 5.797
+        },
+        {
+          "text": "2",
+          "page": 2,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.54579,
+          "width_difference_pct": -10.526,
+          "height_difference_pct": 11.538
+        },
+        {
+          "text": "1x",
+          "page": 3,
+          "role": "Medium",
+          "size": 8.0,
+          "ink_iou": 0.48718,
+          "width_difference_pct": -14.815,
+          "height_difference_pct": 4.762
+        },
+        {
+          "text": "2",
+          "page": 3,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.57753,
+          "width_difference_pct": -6.122,
+          "height_difference_pct": 7.246
+        },
+        {
+          "text": "3",
+          "page": 3,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.44876,
+          "width_difference_pct": -5.263,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "3",
+          "page": 4,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.46546,
+          "width_difference_pct": -8.163,
+          "height_difference_pct": 7.143
+        },
+        {
+          "text": "4",
+          "page": 4,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.50598,
+          "width_difference_pct": -14.286,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "4",
+          "page": 5,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.49126,
+          "width_difference_pct": -14.545,
+          "height_difference_pct": 7.353
+        },
+        {
+          "text": "5",
+          "page": 5,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.60232,
+          "width_difference_pct": 5.556,
+          "height_difference_pct": 11.538
+        },
+        {
+          "text": "5",
+          "page": 6,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.60694,
+          "width_difference_pct": -6.0,
+          "height_difference_pct": 5.714
+        },
+        {
+          "text": "6",
+          "page": 6,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.54478,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 11.538
+        },
+        {
+          "text": "6",
+          "page": 7,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.54717,
+          "width_difference_pct": 4.167,
+          "height_difference_pct": 5.714
+        },
+        {
+          "text": "7",
+          "page": 7,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.75429,
+          "width_difference_pct": 5.263,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "7",
+          "page": 8,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.60075,
+          "width_difference_pct": 10.638,
+          "height_difference_pct": 5.797
+        },
+        {
+          "text": "8",
+          "page": 8,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.68182,
+          "width_difference_pct": -5.263,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "8",
+          "page": 9,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.70151,
+          "width_difference_pct": -6.0,
+          "height_difference_pct": 5.634
+        },
+        {
+          "text": "1",
+          "page": 9,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.24017,
+          "width_difference_pct": -47.059,
+          "height_difference_pct": 7.143
+        },
+        {
+          "text": "2",
+          "page": 9,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.59941,
+          "width_difference_pct": -3.333,
+          "height_difference_pct": 6.977
+        },
+        {
+          "text": "9",
+          "page": 9,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.6,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 11.538
+        },
+        {
+          "text": "9",
+          "page": 10,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.62338,
+          "width_difference_pct": 2.083,
+          "height_difference_pct": 5.714
+        },
+        {
+          "text": "2x",
+          "page": 10,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.65511,
+          "width_difference_pct": -4.545,
+          "height_difference_pct": 6.977
+        },
+        {
+          "text": "10",
+          "page": 10,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.18729,
+          "width_difference_pct": -18.421,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "13",
+          "page": 14,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.21,
+          "width_difference_pct": -17.442,
+          "height_difference_pct": 7.143
+        },
+        {
+          "text": "14",
+          "page": 14,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.30065,
+          "width_difference_pct": -24.324,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "16",
+          "page": 17,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.15907,
+          "width_difference_pct": -13.636,
+          "height_difference_pct": 7.246
+        },
+        {
+          "text": "17",
+          "page": 17,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.49432,
+          "width_difference_pct": -14.706,
+          "height_difference_pct": 7.692
+        },
+        {
+          "text": "27",
+          "page": 28,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.58644,
+          "width_difference_pct": 1.923,
+          "height_difference_pct": 7.246
+        },
+        {
+          "text": "28",
+          "page": 28,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.51858,
+          "width_difference_pct": -7.143,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "2x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.61677,
+          "width_difference_pct": -4.0,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "4504369",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.27473,
+          "width_difference_pct": -8.247,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "302401",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.26686,
+          "width_difference_pct": -11.392,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "4x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.56329,
+          "width_difference_pct": -4.0,
+          "height_difference_pct": 13.333
+        },
+        {
+          "text": "6258135",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.33461,
+          "width_difference_pct": -10.0,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "6174937",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.44462,
+          "width_difference_pct": -4.706,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "1x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.55556,
+          "width_difference_pct": -19.048,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "4160857",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.21437,
+          "width_difference_pct": -7.692,
+          "height_difference_pct": 6.25
+        },
+        {
+          "text": "de commerce du/",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.36063,
+          "width_difference_pct": -5.634,
+          "height_difference_pct": -8.696
+        },
+        {
+          "text": "LEGO and the LEGO logo are trademarks of the/sont des marques d",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.23806,
+          "width_difference_pct": -2.652,
+          "height_difference_pct": 4.0
+        },
+        {
+          "text": "son marcas registradas de LEGO Group. \u00a92023 The LEGO Group.",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.22368,
+          "width_difference_pct": -2.749,
+          "height_difference_pct": 4.167
+        },
+        {
+          "text": "6457824",
+          "page": 36,
+          "role": "Regular",
+          "size": 8.0,
+          "ink_iou": 0.50783,
+          "width_difference_pct": -0.84,
+          "height_difference_pct": 9.091
+        }
+      ]
+    },
+    {
+      "family": "plusjakartasans",
+      "mean_ink_iou": 0.46019,
+      "step_ink_iou": 0.49684,
+      "mean_absolute_width_error_pct": 5.511,
+      "samples": [
+        {
+          "text": "1",
+          "page": 2,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.60583,
+          "width_difference_pct": -14.815,
+          "height_difference_pct": 13.043
+        },
+        {
+          "text": "2",
+          "page": 2,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.42038,
+          "width_difference_pct": 5.263,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "1x",
+          "page": 3,
+          "role": "Medium",
+          "size": 8.0,
+          "ink_iou": 0.5523,
+          "width_difference_pct": -3.704,
+          "height_difference_pct": 14.286
+        },
+        {
+          "text": "2",
+          "page": 3,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.4335,
+          "width_difference_pct": 4.082,
+          "height_difference_pct": 14.493
+        },
+        {
+          "text": "3",
+          "page": 3,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.3949,
+          "width_difference_pct": 5.263,
+          "height_difference_pct": 19.231
+        },
+        {
+          "text": "3",
+          "page": 4,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.43335,
+          "width_difference_pct": 6.122,
+          "height_difference_pct": 12.857
+        },
+        {
+          "text": "4",
+          "page": 4,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.54198,
+          "width_difference_pct": 4.762,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "4",
+          "page": 5,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.46631,
+          "width_difference_pct": 1.818,
+          "height_difference_pct": 14.706
+        },
+        {
+          "text": "5",
+          "page": 5,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.39498,
+          "width_difference_pct": 11.111,
+          "height_difference_pct": 19.231
+        },
+        {
+          "text": "5",
+          "page": 6,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.41874,
+          "width_difference_pct": 4.0,
+          "height_difference_pct": 12.857
+        },
+        {
+          "text": "6",
+          "page": 6,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.60498,
+          "width_difference_pct": 5.263,
+          "height_difference_pct": 19.231
+        },
+        {
+          "text": "6",
+          "page": 7,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.52376,
+          "width_difference_pct": 4.167,
+          "height_difference_pct": 12.857
+        },
+        {
+          "text": "7",
+          "page": 7,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.73333,
+          "width_difference_pct": -5.263,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "7",
+          "page": 8,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.67697,
+          "width_difference_pct": 2.128,
+          "height_difference_pct": 13.043
+        },
+        {
+          "text": "8",
+          "page": 8,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.51821,
+          "width_difference_pct": 10.526,
+          "height_difference_pct": 19.231
+        },
+        {
+          "text": "8",
+          "page": 9,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.52533,
+          "width_difference_pct": 4.0,
+          "height_difference_pct": 12.676
+        },
+        {
+          "text": "1",
+          "page": 9,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.68227,
+          "width_difference_pct": -17.647,
+          "height_difference_pct": 14.286
+        },
+        {
+          "text": "2",
+          "page": 9,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.42386,
+          "width_difference_pct": 6.667,
+          "height_difference_pct": 13.953
+        },
+        {
+          "text": "9",
+          "page": 9,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.59929,
+          "width_difference_pct": 5.263,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "9",
+          "page": 10,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.60961,
+          "width_difference_pct": 4.167,
+          "height_difference_pct": 12.857
+        },
+        {
+          "text": "2x",
+          "page": 10,
+          "role": "Medium",
+          "size": 16.0,
+          "ink_iou": 0.48925,
+          "width_difference_pct": -1.515,
+          "height_difference_pct": 13.953
+        },
+        {
+          "text": "10",
+          "page": 10,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.39273,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 19.231
+        },
+        {
+          "text": "13",
+          "page": 14,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.38013,
+          "width_difference_pct": 5.814,
+          "height_difference_pct": 12.857
+        },
+        {
+          "text": "14",
+          "page": 14,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.5481,
+          "width_difference_pct": -2.703,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "16",
+          "page": 17,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.46403,
+          "width_difference_pct": 2.273,
+          "height_difference_pct": 14.493
+        },
+        {
+          "text": "17",
+          "page": 17,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.63934,
+          "width_difference_pct": -5.882,
+          "height_difference_pct": 15.385
+        },
+        {
+          "text": "27",
+          "page": 28,
+          "role": "Medium",
+          "size": 26.0,
+          "ink_iou": 0.42457,
+          "width_difference_pct": 4.808,
+          "height_difference_pct": 14.493
+        },
+        {
+          "text": "28",
+          "page": 28,
+          "role": "Medium",
+          "size": 10.0,
+          "ink_iou": 0.45508,
+          "width_difference_pct": 7.143,
+          "height_difference_pct": 19.231
+        },
+        {
+          "text": "2x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.56284,
+          "width_difference_pct": -4.0,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "4504369",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.25849,
+          "width_difference_pct": 6.186,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "302401",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.28378,
+          "width_difference_pct": 7.595,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "4x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.57059,
+          "width_difference_pct": 0.0,
+          "height_difference_pct": 20.0
+        },
+        {
+          "text": "6258135",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.37023,
+          "width_difference_pct": 4.444,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "6174937",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.28052,
+          "width_difference_pct": 7.059,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "1x",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.58993,
+          "width_difference_pct": -9.524,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "4160857",
+          "page": 34,
+          "role": "Medium",
+          "size": 6.0,
+          "ink_iou": 0.30061,
+          "width_difference_pct": 6.593,
+          "height_difference_pct": 12.5
+        },
+        {
+          "text": "de commerce du/",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.25446,
+          "width_difference_pct": 1.878,
+          "height_difference_pct": -4.348
+        },
+        {
+          "text": "LEGO and the LEGO logo are trademarks of the/sont des marques d",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.17906,
+          "width_difference_pct": 2.778,
+          "height_difference_pct": 0.0
+        },
+        {
+          "text": "son marcas registradas de LEGO Group. \u00a92023 The LEGO Group.",
+          "page": 36,
+          "role": "Regular",
+          "size": 6.400000095367432,
+          "ink_iou": 0.19994,
+          "width_difference_pct": 3.272,
+          "height_difference_pct": 4.167
+        },
+        {
+          "text": "6457824",
+          "page": 36,
+          "role": "Regular",
+          "size": 8.0,
+          "ink_iou": 0.2042,
+          "width_difference_pct": 10.924,
+          "height_difference_pct": 9.091
+        }
+      ]
+    }
+  ]
+}

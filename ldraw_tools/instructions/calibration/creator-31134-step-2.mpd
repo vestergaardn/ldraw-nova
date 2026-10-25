@@ -1,0 +1,8 @@
+0 FILE creator-31134-step-2.ldr
+0 Creator 31134 step 2 calibration reconstruction
+0 !LDRAW_ORG Model
+1 19 0 0 -40 -1 0 0 0 1 0 0 0 -1 3034.dat
+0 STEP
+1 72 40 8 0 -1 0 0 0 1 0 0 0 -1 48205.dat
+1 72 -40 8 0 -1 0 0 0 1 0 0 0 -1 48208.dat
+0 NOFILE

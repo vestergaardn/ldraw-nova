@@ -143,7 +143,11 @@ def parser():
     d.add_argument('file')
     d.add_argument('--output', required=True)
     d.add_argument('--title')
-    d.add_argument('--max-instances', type=positive, default=2000)
+    d.add_argument('--max-instances', type=positive, default=10000)
+    d.add_argument('--template', choices=['creator-31134','city-clear'], default='creator-31134')
+    d.add_argument('--no-improve', action='store_true')
+    d.add_argument('--print-format', choices=['native','letter'], default='native')
+    d.add_argument('--workdir', help='Durable render cache for interrupted guides')
     d = m.add_parser('prepare', help='Extract a source assembly and make attributed step manuals')
     d.add_argument('file')
     d.add_argument('--section', required=True)
@@ -384,7 +388,8 @@ def run(args):
         if args.manual_command == 'pdf':
             from .booklet import create_booklet
             return create_booklet(args.file, args.output, parts, title=args.title,
-                                  max_instances=args.max_instances), 0
+                                  max_instances=args.max_instances,template=args.template,improve=not args.no_improve,
+                                  print_format=args.print_format,workdir=args.workdir), 0
         from .manuals import prepare_manual, review_manual, export_manual
         if args.manual_command == 'prepare':
             notes = json.loads(Path(args.notes).read_text()) if args.notes else None
