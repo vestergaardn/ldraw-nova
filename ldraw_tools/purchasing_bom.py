@@ -19,4 +19,8 @@ def requirements(path, parts=None):
 
 
 if __name__=='__main__':
-    print(json.dumps(requirements(sys.argv[1])))
+    if '--strict' in sys.argv:
+        from .purchase_geometry import requirements as strict_requirements
+        print(json.dumps(strict_requirements(sys.argv[1])))
+    else:
+        print(json.dumps(requirements(sys.argv[1])))
