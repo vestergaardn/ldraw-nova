@@ -85,7 +85,7 @@ class Pages:
         method=self.pdf.setStrokeColorRGB if stroke else self.pdf.setFillColorRGB
         method(*self.template['colors'][name])
 
-    def text(self,value,x,y,*,size=8,role='Medium',width=None):
+    def text(self,value,x,y,*,size=8,role='Medium',width=None,max_height=None):
         value=str(value)
         self.color('ink')
         if width is None:
@@ -93,6 +93,10 @@ class Pages:
         else:
             p=Paragraph(escape(value),ParagraphStyle('instruction',fontName='Outfit-'+role,fontSize=size,leading=size*1.18,textColor=tuple(self.template['colors']['ink'])))
             _,h=p.wrap(width,self.height)
+            if max_height is not None and h>max_height:
+                size*=max_height/h
+                p=Paragraph(escape(value),ParagraphStyle('instruction',fontName='Outfit-'+role,fontSize=size,leading=size*1.18,textColor=tuple(self.template['colors']['ink'])))
+                _,h=p.wrap(width,self.height)
             p.drawOn(self.pdf,x,self.height-y-h)
             return h
 
@@ -164,8 +168,9 @@ def write_creator(folder,manual,parts,target,plan,template,icons):
         return final[item['source_section']] if item['kind']=='submodel' else icons[f"{item['ref']}|{item['colour']}"]
     book.begin('cover')
     book.text('LDRAW NOVA',18,24,size=10,role='Bold')
-    book.text(manual['title'],18,34,size=18,role='Bold',width=345)
-    book.image(folder/manual['final_images'][0],(35,88,310,145),component='cover_model')
+    title_height=book.text(manual['title'],18,34,size=18,role='Bold',width=345,max_height=74)
+    model_top=max(88,34+title_height+8)
+    book.image(folder/manual['final_images'][0],(35,model_top,310,233-model_top),component='cover_model')
     book.text(f"{manual['physical_placements']} pieces",18,253,size=10)
     book.text('Independent fan-made instructions',185,253,size=7,role='Regular')
     book.end()
