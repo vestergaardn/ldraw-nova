@@ -86,8 +86,27 @@ def test_booklet_pipeline_preserves_every_used_view_and_reports_completion(tmp_p
             if not entry['insets']:assert entry['secondary_camera'] in step['images']
     assert sum(len(step['images']) for section in manual['sections'] for step in section['steps'])<12
     assert len([call for call in calls if '-csv' in call])==1, 'Only the complete model needs a CSV cross-check'
+    icon_sources=list(folder.glob('icons/*/part.mpd'))
+    assert icon_sources and all(p.read_text().count('0 FILE ')==1 for p in icon_sources), 'Standard thumbnails must not reload the whole assembly'
     progress=json.loads((work/'progress.json').read_text())
     assert progress['stage']=='complete' and progress['completed']==progress['total']==1
     calls.clear()
     create_booklet(source,tmp_path/'letter.pdf',parts,workdir=work,print_format='letter')
     assert calls==[], 'Print-format changes reuse verified render work'
+
+
+def test_embedded_part_thumbnails_keep_their_local_definitions(tmp_path,parts,monkeypatch):
+    import json
+    from PIL import Image
+    from ldraw_tools.instructions.layout import part_icons
+    from conftest import mpd,ref
+    source=mpd(ref('custom.dat'))+mpd('0 !LDRAW_ORG Unofficial_Part\n'+ref(),name='custom.dat')
+    (tmp_path/'source.mpd').write_text(source)
+    (tmp_path/'bom.json').write_text(json.dumps([{'part':'custom.dat','colour_code':4}]))
+    manual={'preview_colour':7,'sections':[{'steps':[{'parts':[{'ref':'custom.dat','colour':4,'kind':'part'}]}]}]}
+    def render(path,library,directory,**kwargs):
+        assert '0 FILE custom.dat' in path.read_text() and '3001.dat' in path.read_text()
+        Image.new('RGB',(20,20),'white').save(directory/'home.png')
+    monkeypatch.setattr('ldraw_tools.instructions.layout.render',render)
+    icons=part_icons(tmp_path,manual,parts)
+    assert 'custom.dat|4' in icons

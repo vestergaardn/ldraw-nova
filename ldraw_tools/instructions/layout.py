@@ -41,6 +41,8 @@ def part_icons(folder,manual,parts,*,progress=None):
     folder=Path(folder)
     library=(parts.path.parent/'parts').resolve().parent
     source=(folder/'source.mpd').read_text()
+    from ..document import parse_source,physical_context,section_table,is_part
+    embedded=any(is_part(section) for section in section_table(parse_source(folder/'source.mpd')).values())
     unique={(p['ref'],p['colour']) for section in manual['sections'] for step in section['steps'] for p in step['parts'] if p['kind']=='part'}
     for row in json.loads((folder/'bom.json').read_text()):
         ref=str(row['part']); unique.add((ref if ref.lower().endswith('.dat') else ref+'.dat',row['colour_code']))
@@ -48,14 +50,16 @@ def part_icons(folder,manual,parts,*,progress=None):
     if progress:progress('parts',0,len(unique))
     for index,(ref,colour) in enumerate(sorted(unique),1):
         # Preserve embedded DAT dependencies from the extracted source.
-        content=f'0 FILE icon.ldr\n0 Part preview\n1 {colour if colour not in {16,24} else manual["preview_colour"]} 0 0 0 1 0 0 0 1 0 0 0 1 {ref}\n'+source
-        digest=hashlib.sha256(('icon-v3|'+content).encode()).hexdigest()
+        prefix=f'0 FILE icon.ldr\n0 Part preview\n1 {colour if colour not in {16,24} else manual["preview_colour"]} 0 0 0 1 0 0 0 1 0 0 0 1 {ref}\n'
+        # Keep the existing cache identity so interrupted jobs reuse completed
+        # thumbnails. Ordinary library parts do not need the whole assembly.
+        digest=hashlib.sha256(('icon-v3|'+prefix+source).encode()).hexdigest()
+        content=prefix+(source if embedded else '0 NOFILE\n')
         directory=folder/'icons'/digest
         image=directory/'home.png';manifest=directory/'sha256'
         if not image.is_file() or not manifest.is_file() or manifest.read_text()!=hashlib.sha256(image.read_bytes()).hexdigest():
             atomic_write(directory/'part.mpd',content)
             from ldraw import inspect_model
-            from ..document import parse_source,physical_context
             physical,overlay=physical_context(parse_source(directory/'part.mpd'),parts)
             bounds=inspect_model(physical,overlay).bounds
             render(directory/'part.mpd',library,directory,views=('home',),bounds=bounds,orthographic=True,export_bom=False)
