@@ -3,7 +3,7 @@
     "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6457824.pdf",
     "sha256": "d4de596a11da68a6a92e7b364f1b777ecdb0d062fd47943df5c9470a60985ea6"
   },
-  "candidate_sha256": "d8c3898ab4fb9cff83bd1814c14572872e81717b0872ff5d0e51b5e70c644f4c",
+  "candidate_sha256": "3df61597aba6e01c85e40c814634646f33b70cbcbfad4de3f211856671f7c7a3",
   "renderer": "pdftoppm version 26.10.0",
   "required_changed_pixels": 0,
   "tests": [
@@ -15,9 +15,9 @@
         383,
         290
       ],
-      "changed_pixels": 16544,
+      "changed_pixels": 16556,
       "total_pixels": 111070,
-      "layout_changed_pixels": 1804,
+      "layout_changed_pixels": 1816,
       "layout_pixels": 95736,
       "geometry_changed_pixels": 14740,
       "geometry_pixels": 15334,
@@ -32,9 +32,9 @@
         383,
         290
       ],
-      "changed_pixels": 27035,
+      "changed_pixels": 27069,
       "total_pixels": 111070,
-      "layout_changed_pixels": 4515,
+      "layout_changed_pixels": 4549,
       "layout_pixels": 86360,
       "geometry_changed_pixels": 22520,
       "geometry_pixels": 24710,
@@ -49,9 +49,9 @@
         766,
         579
       ],
-      "changed_pixels": 64725,
+      "changed_pixels": 64727,
       "total_pixels": 443514,
-      "layout_changed_pixels": 6162,
+      "layout_changed_pixels": 6164,
       "layout_pixels": 383278,
       "geometry_changed_pixels": 58563,
       "geometry_pixels": 60236,
@@ -66,9 +66,9 @@
         766,
         579
       ],
-      "changed_pixels": 101616,
+      "changed_pixels": 101828,
       "total_pixels": 443514,
-      "layout_changed_pixels": 14076,
+      "layout_changed_pixels": 14288,
       "layout_pixels": 349434,
       "geometry_changed_pixels": 87540,
       "geometry_pixels": 94080,

@@ -4,7 +4,7 @@ The fixed reference is official Creator 31134, PDF SHA-256 `d4de596a11da68a6a92e
 
 The calibration renderer rebuilds pages 3 and 34 from LDraw geometry and reusable page components. It records each input, camera and rendered asset hash. It never pastes a reference-page image.
 
-`reference-fidelity.json` records strict comparisons using Poppler 26.10.0 at 72 and 144 DPI. At 144 DPI, page 3 differs in **64,725 pixels**: 6,162 layout pixels and 58,563 geometry pixels. Page 34 differs in **101,616 pixels**: 14,076 layout pixels and 87,540 geometry pixels. Both pages contain 443,514 pixels. The required count is zero, so both tests fail. Background agreement is not a similarity score.
+`reference-fidelity.json` records strict comparisons using Poppler 26.10.0 at 72 and 144 DPI. At 144 DPI, page 3 differs in **64,727 pixels**: 6,164 layout pixels and 58,563 geometry pixels. Page 34 differs in **101,828 pixels**: 14,288 layout pixels and 87,540 geometry pixels. Both pages contain 443,514 pixels. The required count is zero, so both tests fail. Background agreement is not a similarity score.
 
 Outfit is an approved free substitute for Cera Pro. Its glyph shapes and widths differ. LeoCAD and the LDraw library also differ from the reference in projection, outlines, lighting, surfaces and transparent-part shading. Some border radii and progress measurements remain provisional. No exact Creator or City claim is supported.
 

@@ -21,10 +21,12 @@ Visible-ink intersection over union measures overlapping dark pixels, after boun
 
 | Family | Mean ink overlap | Step-number overlap | Mean absolute ink-width error |
 | --- | ---: | ---: | ---: |
-| Outfit | 0.64041 | 0.71705 | 3.590% |
-| Jost | 0.57005 | 0.62484 | 4.951% |
+| Outfit | 0.67750 | 0.75407 | 3.063% |
+| Jost | 0.61536 | 0.65197 | 7.335% |
+| Urbanist | 0.54254 | 0.55867 | 8.487% |
 | Poppins | 0.51371 | 0.51370 | 6.489% |
-| Urbanist | 0.46294 | 0.47918 | 9.916% |
-| Plus Jakarta Sans | 0.46019 | 0.49684 | 5.511% |
+| Plus Jakarta Sans | 0.51006 | 0.56276 | 5.308% |
 
 The accompanying JSON contains every sample. Visual review agrees that Outfit best preserves the circular bowls, broad numerals and compact spacing in this shortlist. Its numeral 1, stroke weights and some terminals differ visibly. This is a researched substitute, **not an exact match**. Whole-page reference comparisons must still report every difference; the zero-pixel-difference requirement does not pass because this font was selected.
+
+Each static instance has a distinct PostScript face name. `instances.json` records its weight, source checksum and output checksum. This prevents ReportLab from collapsing Regular, Medium and Bold into one embedded face.

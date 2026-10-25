@@ -64,3 +64,12 @@ def test_template_records_components_without_reference_page_images(tmp_path):
     assert abs(float(page.mediabox.width)-382.677)<.001
     assert '13' in page.extract_text()
     assert load_template('city-clear')['colors']['paper']==[1,1,1]
+
+
+def test_booklet_font_weights_have_distinct_embedded_faces():
+    from reportlab.pdfbase import pdfmetrics
+    from ldraw_tools.instructions.layout import register_fonts
+    register_fonts()
+    faces=[pdfmetrics.getFont('Outfit-'+role).face.name for role in ['Regular','Medium','Bold']]
+    assert len(set(faces))==3, 'PDF font registration must not collapse distinct weights'
+    assert all(b'Thin' not in face for face in faces)

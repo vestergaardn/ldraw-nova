@@ -46,7 +46,7 @@ for family in sorted(p for p in candidates.iterdir() if p.is_dir() and (p/'OFL.t
         destination = output / f'{family.name}-{role}.ttf'
         if variable:
             font = FTFont(variable[0])
-            instantiateVariableFont(font,{'wght':weight},inplace=True).save(destination)
+            instantiateVariableFont(font,{'wght':weight},inplace=True,updateFontNames=True).save(destination)
         else:
             source = next(family.glob(f'*-{role}.ttf'))
             destination.write_bytes(source.read_bytes())

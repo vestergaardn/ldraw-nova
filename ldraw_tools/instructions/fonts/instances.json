@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "source_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/outfit/Outfit%5Bwght%5D.ttf",
+  "source_sha256": "fc7287273e66929776e2ba54f144fe699080bec29f61bf649d70d871468aeade",
+  "fonttools": "4.67.0",
+  "updateFontNames": true,
+  "instances": [
+    {
+      "file": "Outfit-Regular.ttf",
+      "weight": 400,
+      "postscript_name": "Outfit-Regular",
+      "sha256": "a8ef85bc4b36f647e916a11ac318130ae3c377fd3df73008381f55d46c759896"
+    },
+    {
+      "file": "Outfit-Medium.ttf",
+      "weight": 500,
+      "postscript_name": "Outfit-Medium",
+      "sha256": "b8ae5a4f2860fa589bcbbff5b986d9cd8febee1d4a8c76fc611fbaa9725641b0"
+    },
+    {
+      "file": "Outfit-Bold.ttf",
+      "weight": 700,
+      "postscript_name": "Outfit-Bold",
+      "sha256": "2b07dc1778c4d016e81546cb34dce044a7c963df10d2836d19f114d682c07831"
+    }
+  ]
+}

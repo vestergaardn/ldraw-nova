@@ -95,7 +95,7 @@ class InstructionPlan:
     sections: list = field(default_factory=list)
     pages: list = field(default_factory=list)
     cameras: dict = field(default_factory=lambda: {k:list(v) for k,v in VIEWS.items()})
-    fidelity: dict = field(default_factory=lambda: {'status':'not_exact','font':'Outfit','reference_font':'Cera Pro','physical_validity':'not_proven'})
+    fidelity: dict = field(default_factory=lambda: {'status':'not_exact','font':'Outfit','font_version':2,'reference_font':'Cera Pro','physical_validity':'not_proven'})
 
     def save(self,path):
         atomic_write(Path(path),json.dumps(asdict(self),indent=2)+'\n')

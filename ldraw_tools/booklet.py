@@ -311,4 +311,4 @@ def create_booklet(source, output, parts, *, title=None, max_instances=10000,
                 template_version=definition['version'],plan_version=PLAN_VERSION,print_format=print_format,
                 native_pdf=str(native),letter_pdf=str(letter),plan=str(output.with_suffix('.plan.json')),
                 geometry_preserved=True,source_checks_passed=True,bom_matches=True,
-                fidelity='not_exact',font='Outfit',physical_validity='not_proven')
+                fidelity='not_exact',font='Outfit',font_version=2,physical_validity='not_proven')
