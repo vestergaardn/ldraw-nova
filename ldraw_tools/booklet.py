@@ -262,7 +262,8 @@ def create_booklet(source, output, parts, *, title=None, max_instances=10000,
                    template='creator-31134', improve=True, print_format='native', workdir=None):
     import hashlib
     import shutil
-    from .instructions.plan import improve_source, geometry_signature, make_plan, VERSION as PLAN_VERSION
+    import time
+    from .instructions.plan import improve_source, geometry_signature, make_plan, required_step_views, VERSION as PLAN_VERSION
     from .instructions.layout import load_template, part_icons, write_creator, impose_letter
     from .manuals import current_manual
     source, output = Path(source).resolve(), Path(output).resolve()
@@ -276,6 +277,9 @@ def create_booklet(source, output, parts, *, title=None, max_instances=10000,
     output.parent.mkdir(parents=True, exist_ok=True)
     work=Path(workdir).resolve() if workdir else output.parent/(output.stem+'.work')
     if source.is_relative_to(work):raise ValueError('Keep the source outside the rendering work folder')
+    def progress(stage,completed=0,total=None):
+        atomic_write(work/'progress.json',json.dumps(dict(stage=stage,completed=completed,total=total,updated_at=time.time()))+'\n')
+    progress('checking')
     key=hashlib.sha256((str(PLAN_VERSION)+json.dumps(definition,sort_keys=True)+str(improve)+original).encode()).hexdigest()
     temp=work/key;temp.mkdir(parents=True,exist_ok=True)
     snapshot=temp/'source.mpd';atomic_write(snapshot,revised)
@@ -292,10 +296,12 @@ def create_booklet(source, output, parts, *, title=None, max_instances=10000,
         except (OSError,ValueError,KeyError):
             manual=prepare_manual(snapshot,model.name,temp/'manual',parts,
                 title=title or model.description or source.stem,colour=7,
-                views=('home','back','top'),kind='construction',max_instances=max_instances,force=True)
+                views=('home','back','top'),kind='construction',max_instances=max_instances,force=True,
+                select_views=lambda preview,steps:required_step_views(preview,steps,improve=improve),progress=progress)
         if not manual['source_checks_passed'] or manual['bom_matches'] is not True:
             raise ValueError('The model failed source or rendered parts-list checks. Fix it before printing.')
-        icons=part_icons(temp/'manual',manual,parts)
+        icons=part_icons(temp/'manual',manual,parts,progress=progress)
+    progress('layout')
     plan=make_plan(source,manual,temp/'manual',template=definition,improve=improve,changes=changes)
     native=temp/'native.pdf';letter=temp/'letter.pdf'
     pages=write_creator(temp/'manual',manual,parts,native,plan,definition,icons)
@@ -305,6 +311,7 @@ def create_booklet(source, output, parts, *, title=None, max_instances=10000,
     staging=output.with_suffix('.tmp.pdf')
     shutil.copyfile(letter if print_format=='letter' else native,staging);staging.replace(output)
     shutil.copyfile(temp/'instruction-plan.json',output.with_suffix('.plan.json'))
+    progress('complete',1,1)
     return dict(output=str(output),pages=len(imposition['page_order']) if print_format=='letter' else pages,
                 native_pages=pages,parts=manual['physical_placements'],
                 steps=sum(len(s['steps']) for s in manual['sections']),template=definition['id'],

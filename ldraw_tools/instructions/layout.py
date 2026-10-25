@@ -36,7 +36,7 @@ def register_fonts():
             pdfmetrics.registerFont(TTFont(name,str(ROOT/'fonts'/f'{name}.ttf')))
 
 
-def part_icons(folder,manual,parts):
+def part_icons(folder,manual,parts,*,progress=None):
     """Geometry-rendered, content-addressed thumbnails; embedded parts stay intact."""
     folder=Path(folder)
     library=(parts.path.parent/'parts').resolve().parent
@@ -45,7 +45,8 @@ def part_icons(folder,manual,parts):
     for row in json.loads((folder/'bom.json').read_text()):
         ref=str(row['part']); unique.add((ref if ref.lower().endswith('.dat') else ref+'.dat',row['colour_code']))
     icons={}
-    for ref,colour in sorted(unique):
+    if progress:progress('parts',0,len(unique))
+    for index,(ref,colour) in enumerate(sorted(unique),1):
         # Preserve embedded DAT dependencies from the extracted source.
         content=f'0 FILE icon.ldr\n0 Part preview\n1 {colour if colour not in {16,24} else manual["preview_colour"]} 0 0 0 1 0 0 0 1 0 0 0 1 {ref}\n'+source
         digest=hashlib.sha256(('icon-v3|'+content).encode()).hexdigest()
@@ -57,9 +58,10 @@ def part_icons(folder,manual,parts):
             from ..document import parse_source,physical_context
             physical,overlay=physical_context(parse_source(directory/'part.mpd'),parts)
             bounds=inspect_model(physical,overlay).bounds
-            render(directory/'part.mpd',library,directory,views=('home',),bounds=bounds,orthographic=True)
+            render(directory/'part.mpd',library,directory,views=('home',),bounds=bounds,orthographic=True,export_bom=False)
             atomic_write(manifest,hashlib.sha256(image.read_bytes()).hexdigest())
         icons[f'{ref}|{colour}']=str(image)
+        if progress:progress('parts',index,len(unique))
     return icons
 
 

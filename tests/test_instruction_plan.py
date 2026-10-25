@@ -73,3 +73,13 @@ def test_booklet_font_weights_have_distinct_embedded_faces():
     faces=[pdfmetrics.getFont('Outfit-'+role).face.name for role in ['Regular','Medium','Bold']]
     assert len(set(faces))==3, 'PDF font registration must not collapse distinct weights'
     assert all(b'Thin' not in face for face in faces)
+
+
+def test_required_views_include_every_printed_view_without_unused_angles(monkeypatch):
+    from ldraw_tools.instructions.plan import required_step_views
+    monkeypatch.setattr('ldraw_tools.instructions.plan.visibility_view',lambda preview,n:('top' if n==2 else 'back',{}))
+    steps=[{'number':1,'parts':[{'kind':'part'}]},
+           {'number':2,'parts':[{'kind':'submodel'}]},
+           {'number':3,'parts':[{'kind':'submodel'}]}]
+    assert required_step_views(None,steps,improve=True)=={1:('home','back'),2:('top',),3:('home','back')}
+    assert required_step_views(None,steps,improve=False)=={1:('home','back'),2:('home',),3:('home',)}

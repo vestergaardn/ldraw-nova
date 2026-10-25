@@ -82,7 +82,8 @@ def operation_notes(notes=None, *, kind="mechanism"):
 
 def prepare_manual(path, section, outdir, parts, *, title=None, views=('home', 'back'),
                    colour=7, notes=None, renders=True, normalize_rotations=False,
-                   repair_bfc=False, force=False, max_instances=2000, kind="mechanism", overview=False):
+                   repair_bfc=False, force=False, max_instances=2000, kind="mechanism", overview=False,
+                   select_views=None, progress=None):
     path, outdir = Path(path).resolve(), Path(outdir).resolve()
     if path.is_relative_to(outdir):
         raise ValueError('Use a separate destination; preparation must not overwrite its source')
@@ -137,6 +138,7 @@ def prepare_manual(path, section, outdir, parts, *, title=None, views=('home', '
     library = (parts.path.parent/'parts').resolve().parent
     original_names = {v:k for k,v in extraction['renames'].items()}
     root_bounds = None
+    previews=[]
     for index, sub in enumerate(s for s in table.values() if not is_part(s)):
         steps = construction_steps(model, sub.name, overlay)
         if not steps:
@@ -146,6 +148,16 @@ def prepare_manual(path, section, outdir, parts, *, title=None, views=('home', '
         preview_path = outdir/directory/'preview.mpd'
         atomic_write(preview_path, serialize_mpd(preview))
         artifacts.append(f'{directory}/preview.mpd')
+        if select_views and not overview:
+            wanted=select_views(preview,steps)
+            for step in steps:step['required_views']=list(wanted[step['number']])
+        sections.append(dict(name=sub.name, original_name=original_names[sub.name],
+                             description=sub.description, directory=directory, steps=steps))
+        previews.append((index,preview,preview_path,steps,directory))
+    image_total=sum(len(step.get('required_views',views)) for section in sections for step in section['steps'])
+    completed=0
+    if progress:progress('steps',completed,image_total)
+    for index,preview,preview_path,steps,directory in previews:
         if renders and (not overview or index == 0):
             mesh_model, mesh_parts = physical_context(preview, parts)
             mesh = inspect_model(mesh_model, mesh_parts)
@@ -153,18 +165,21 @@ def prepare_manual(path, section, outdir, parts, *, title=None, views=('home', '
                 raise ValueError('Cannot make complete build pages: unresolved geometry')
             if index == 0:
                 root_bounds = mesh.bounds
+            options={}
+            if select_views and not overview:options['step_views']={s['number']:s['required_views'] for s in steps}
+            if progress:options['progress']=lambda done,total:progress('steps',completed+done,image_total)
             rendered = [] if overview else render_steps(preview_path, library, outdir/directory,
-                                    steps=[s['number'] for s in steps], views=views, bounds=mesh.bounds)
+                                    steps=[s['number'] for s in steps], views=views, bounds=mesh.bounds,**options)
+            completed+=len(rendered)
             for item in rendered:
                 name = f'{directory}/{item["file"]}'
                 next(s for s in steps if s['number']==item['step'])['images'][item['view']] = name
                 artifacts.append(name)
-        sections.append(dict(name=sub.name, original_name=original_names[sub.name],
-                             description=sub.description, directory=directory, steps=steps))
     if not sections:
         raise ValueError('Selected assembly has no construction placements')
     comparison = None
     if renders:
+        if progress:progress('verify',0,1)
         root_preview = outdir/sections[0]['directory']/'preview.mpd'
         render(root_preview, library, outdir/'renders', views=tuple(dict.fromkeys(['home',*views])) if overview else ('home',), bounds=root_bounds)
         comparison = compare_bom(parse_source(root_preview), parts, outdir/'renders/leocad-bom.csv')
@@ -211,7 +226,11 @@ def current_manual(folder):
     images = [image for section in manual['sections'] for step in section['steps'] for image in step['images'].values()]
     if manual['rendered']:
         required.update([*manual.get('final_images',['renders/home.png']),'renders/leocad-bom.csv','bom-comparison.json',*images])
-        if manual.get('image_mode','steps') != 'overview' and (not images or any(set(s['images']) != set(manual['views']) for section in manual['sections'] for s in section['steps'])):
+        if manual.get('image_mode','steps') != 'overview' and (not images or any(
+                not s.get('required_views',manual['views']) or
+                not set(s.get('required_views',manual['views'])).issubset(manual['views']) or
+                set(s['images']) != set(s.get('required_views',manual['views']))
+                for section in manual['sections'] for s in section['steps'])):
             raise ValueError('Build manual has incomplete rendered steps')
     hashes = manual.get('artifact_hashes', {})
     if not required.issubset(hashes):

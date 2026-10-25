@@ -85,6 +85,24 @@ def visibility_view(preview, step_number):
     return max(scores,key=scores.get),scores
 
 
+def required_step_views(preview, steps, *, improve):
+    """Select exactly the cameras used by the PDF, plus assembly thumbnails.
+
+    This runs before rendering, using the same camera choice as make_plan.
+    Assembly callouts replace the secondary view. Their final home view is
+    still required when that assembly appears in a parent's parts box.
+    """
+    required={}
+    for step in steps:
+        view,_=visibility_view(preview,step['number']) if improve else ('home',{})
+        wanted={view}
+        if not any(item['kind']=='submodel' for item in step['parts']):
+            wanted.add('back' if view!='back' else 'home')
+        if step is steps[-1]:wanted.add('home')
+        required[step['number']]=tuple(name for name in VIEWS if name in wanted)
+    return required
+
+
 @dataclass
 class InstructionPlan:
     version: int

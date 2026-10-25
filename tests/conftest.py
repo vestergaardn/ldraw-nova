@@ -14,7 +14,7 @@ def parts(tmp_path_factory):
     (root / "parts.lst").write_text("3001.dat Brick 2 x 4\n3003.dat Brick 2 x 2\n3022.dat Plate 2 x 2\n")
     (root / "LDConfig.ldr").write_text("\n".join(
         f"0 !COLOUR {name} CODE {code} VALUE #FFFFFF EDGE #333333"
-        for code, name in [(0,"Black"),(1,"Blue"),(4,"Red"),(14,"Yellow"),(16,"Main_Colour"),(24,"Edge_Colour")]))
+        for code, name in [(0,"Black"),(1,"Blue"),(4,"Red"),(7,"Light_Grey"),(14,"Yellow"),(16,"Main_Colour"),(24,"Edge_Colour")]))
     for code, x, height in [("3001",40,24),("3003",20,24),("3022",20,8)]:
         (root / f"parts/{code}.dat").write_text(
             f"0 Brick\n0 !LDRAW_ORG Part\n4 16 {-x} 0 -20 {x} 0 -20 {x} 0 20 {-x} 0 20\n"

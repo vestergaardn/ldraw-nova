@@ -44,3 +44,50 @@ def test_pdf_contains_all_step_parts_and_booklet_page_count(tmp_path, parts):
     assert count == len(pdf.pages) and count % 4 == 0
     assert all(i['ref'] in text and i['description'] in text for i in items)
     assert all(tuple(map(float, p.mediabox[2:])) == (396, 612) for p in pdf.pages)
+
+
+def test_booklet_pipeline_preserves_every_used_view_and_reports_completion(tmp_path, parts, monkeypatch):
+    import json
+    from pathlib import Path
+    from types import SimpleNamespace
+    from PIL import Image
+    from ldraw_tools.booklet import create_booklet
+    from ldraw_tools.manuals import current_manual
+    from ldraw_tools.instructions.plan import make_plan
+    from ldraw_tools.instructions.layout import load_template
+    from conftest import mpd,ref
+    source=tmp_path/'assembly.mpd'
+    source.write_text(mpd(ref('child.ldr')+'\n0 STEP\n'+ref('3003.dat',position='200 0 0'))+
+                      mpd(ref()+'\n0 STEP\n'+ref(position='100 0 0'),name='child.ldr'))
+    calls=[]
+    def cad(command,**kwargs):
+        calls.append(command)
+        if '-csv' in command:
+            Path(command[command.index('-csv')+1]).write_text('Part ID,Color Code,Quantity\n3001.dat,4,2\n3003.dat,4,1\n')
+        else:
+            image=Path(command[command.index('-i')+1])
+            numbers=range(int(command[command.index('--from')+1]),int(command[command.index('--to')+1])+1) if '--from' in command else [None]
+            for number in numbers:
+                target=image.with_name(image.stem+f'{number:02}.png') if number else image
+                Image.new('RGB',(80,60),'white').save(target)
+        return SimpleNamespace(returncode=0,stdout='',stderr='')
+    monkeypatch.setattr('ldraw_tools.external.subprocess.run',cad)
+    work=tmp_path/'cache';output=tmp_path/'guide.pdf'
+    result=create_booklet(source,output,parts,workdir=work)
+    assert result['geometry_preserved'] and result['bom_matches'] and result['parts']==3
+    manual_path=next(work.glob('*/manual/manual.json'));folder,manual=current_manual(manual_path.parent)
+    plan=make_plan(source,manual,folder,template=load_template(),improve=True,changes=[])
+    by_name={section['name']:section for section in manual['sections']}
+    for section in plan.sections:
+        original=by_name[section['name']]
+        assert 'home' in original['steps'][-1]['images']
+        for step,entry in zip(original['steps'],section['steps']):
+            assert entry['camera'] in step['images']
+            if not entry['insets']:assert entry['secondary_camera'] in step['images']
+    assert sum(len(step['images']) for section in manual['sections'] for step in section['steps'])<12
+    assert len([call for call in calls if '-csv' in call])==1, 'Only the complete model needs a CSV cross-check'
+    progress=json.loads((work/'progress.json').read_text())
+    assert progress['stage']=='complete' and progress['completed']==progress['total']==1
+    calls.clear()
+    create_booklet(source,tmp_path/'letter.pdf',parts,workdir=work,print_format='letter')
+    assert calls==[], 'Print-format changes reuse verified render work'

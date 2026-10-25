@@ -128,7 +128,10 @@ def test_renderer_uses_exact_step_numbers_and_cannot_reuse_stale_images(tmp_path
     monkeypatch.setattr('ldraw_tools.external.subprocess.run',cad)
     rows=render_steps(source,parts.path.parent,tmp_path/'renders',steps=[1,3],views=['home'])
     assert [r['step'] for r in rows]==[1,3]
-    assert seen[0][-1]==str(source) and '--highlight' in seen[0]
+    assert seen[0][-1]==str(source) and '--no-highlight' in seen[0] and '--orthographic' in seen[0]
+    # A valid completed image now resumes. Corrupt evidence must still fail
+    # when LeoCAD reports success without producing a replacement.
+    (tmp_path/'renders/step-001-home.png').write_bytes(b'corrupted image')
     monkeypatch.setattr('ldraw_tools.external.subprocess.run',lambda *a,**k:SimpleNamespace(returncode=0,stdout='',stderr=''))
     with pytest.raises(ValueError,match='every requested'):
         render_steps(source,parts.path.parent,tmp_path/'renders',steps=[1,3],views=['home'])

@@ -26,7 +26,8 @@ def view_camera(bounds, view):
     return ['--fov', '30', '--camera-position-ldraw', *map(str, (*camera, *center, *up))]
 
 
-def render_steps(path, library, outdir, *, steps, views=("home", "back"), timeout=90, bounds=None):
+def render_steps(path, library, outdir, *, steps, views=("home", "back"), timeout=90, bounds=None,
+                 step_views=None, progress=None):
     """Render actual nonempty source steps, including a final unterminated step.
 
     Uses the same LeoCAD switches as ldraw-render-steps.sh, with argument lists,
@@ -37,6 +38,12 @@ def render_steps(path, library, outdir, *, steps, views=("home", "back"), timeou
     if not views or len(set(views)) != len(views) or any(v not in
             {'home', 'front', 'back', 'left', 'right', 'top', 'bottom'} for v in views):
         raise ValueError('Choose distinct supported viewpoints')
+    if step_views is not None and (set(step_views)!=set(steps) or any(
+            not selected or not set(selected).issubset(views) for selected in step_views.values())):
+        raise ValueError('Choose supported views for every construction step')
+    total=sum(len(step_views[n]) if step_views is not None else len(views) for n in steps)
+    completed=0
+    if progress:progress(completed,total)
     outdir = Path(outdir).resolve()
     outdir.mkdir(parents=True, exist_ok=True)
     from .common import atomic_write
@@ -47,6 +54,8 @@ def render_steps(path, library, outdir, *, steps, views=("home", "back"), timeou
                            for name in ['parts.lst','LDConfig.ldr','parts'])
     images = []
     for view in views:
+        wanted=[n for n in steps if step_views is None or view in step_views[n]]
+        if not wanted:continue
         camera = view_camera(bounds, view) if bounds is not None else ['--viewpoint',view]
         digest = hashlib.sha256(Path(path).read_bytes()+config_bytes+json.dumps(
             ['resumable-v5', str(library), library_key, camera, steps]).encode()).hexdigest()
@@ -58,12 +67,14 @@ def render_steps(path, library, outdir, *, steps, views=("home", "back"), timeou
         if cached.get('key') != digest:
             cached = {'key':digest, 'images':{}}
         missing=[]
-        for number in steps:
+        for number in wanted:
             name = f'step-{number:03}-{view}.png'
             target=outdir/name
             if not target.is_file() or cached['images'].get(name)!=hashlib.sha256(target.read_bytes()).hexdigest():
                 missing.append(number)
             images.append(dict(step=number, view=view, file=name))
+        completed+=len(wanted)-len(missing)
+        if progress:progress(completed,total)
         # Commit each bounded chunk. An interruption only repeats unfinished chunks.
         for offset in range(0,len(missing),8):
             chunk=missing[offset:offset+8]
@@ -96,6 +107,8 @@ def render_steps(path, library, outdir, *, steps, views=("home", "back"), timeou
                         found[number].replace(outdir/name)
                         cached['images'][name]=hashlib.sha256((outdir/name).read_bytes()).hexdigest()
                     atomic_write(manifest_path,json.dumps(cached)+'\n')
+                    completed+=len(group)
+                    if progress:progress(completed,total)
     return images
 
 
@@ -237,7 +250,8 @@ def prepare_glb(path, library, output, parts, *, timeout=180):
                 note="Preview maps unresolved colour 16 to Pearl Dark Grey. In source, 16 means inherited current colour. MPD remains authoritative.")
 
 
-def render(path, library, outdir, *, views=("home", "top", "front"), timeout=90, bounds=None, orthographic=False):
+def render(path, library, outdir, *, views=("home", "top", "front"), timeout=90, bounds=None, orthographic=False,
+           export_bom=True):
     outdir = Path(outdir).resolve()
     outdir.mkdir(parents=True, exist_ok=True)
     results = []
@@ -265,11 +279,12 @@ def render(path, library, outdir, *, views=("home", "top", "front"), timeout=90,
             destination = outdir / target.name
             target.replace(destination)
             results.append(str(destination))
-        bom = Path(temp) / "leocad-bom.csv"
-        result = subprocess.run(["leocad", "-l", str(library), "-csv", str(bom), str(Path(path).resolve())], capture_output=True, text=True, timeout=timeout)
-        if result.returncode or not bom.exists():
-            raise ValueError(f"LeoCAD BOM failed: {result.stdout}\n{result.stderr}")
-        restore_bom_names(bom,embedded_names)
-        bom.replace(outdir / bom.name)
-    return dict(images=results, bom=str(outdir / "leocad-bom.csv"), embedded_definitions_materialized=len(embedded_names),
+        if export_bom:
+            bom = Path(temp) / "leocad-bom.csv"
+            result = subprocess.run(["leocad", "-l", str(library), "-csv", str(bom), str(Path(path).resolve())], capture_output=True, text=True, timeout=timeout)
+            if result.returncode or not bom.exists():
+                raise ValueError(f"LeoCAD BOM failed: {result.stdout}\n{result.stderr}")
+            restore_bom_names(bom,embedded_names)
+            bom.replace(outdir / bom.name)
+    return dict(images=results, bom=str(outdir / "leocad-bom.csv") if export_bom else None, embedded_definitions_materialized=len(embedded_names),
                 visual_review="required: open and inspect the images")
