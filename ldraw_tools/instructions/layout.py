@@ -76,7 +76,7 @@ class Pages:
         self.width,self.height=template['page']['width'],template['page']['height']
         self.pdf=canvas.Canvas(str(target),pagesize=(self.width,self.height),pageCompression=1,invariant=1)
         self.pdf.setTitle(title+' - Assembly instructions')
-        self.pdf.setAuthor('LDraw Nova - independent fan-made instructions')
+        self.pdf.setAuthor('LEGO Nova - independent fan-made instructions')
         self.pdf.setSubject('Geometry preserved; physical construction and exact reference fidelity are not certified.')
         self.number=0
         self.records=[]
@@ -167,7 +167,7 @@ def write_creator(folder,manual,parts,target,plan,template,icons):
     def icon(item):
         return final[item['source_section']] if item['kind']=='submodel' else icons[f"{item['ref']}|{item['colour']}"]
     book.begin('cover')
-    book.text('LDRAW NOVA',18,24,size=10,role='Bold')
+    book.text('LEGO NOVA',18,24,size=10,role='Bold')
     title_height=book.text(manual['title'],18,34,size=18,role='Bold',width=345,max_height=74)
     model_top=max(88,34+title_height+8)
     book.image(folder/manual['final_images'][0],(35,model_top,310,233-model_top),component='cover_model')
@@ -176,7 +176,7 @@ def write_creator(folder,manual,parts,target,plan,template,icons):
     book.end()
     book.begin('introduction')
     book.text('Before you build',18,35,size=20,role='Bold')
-    messages=[('01','Sort the parts using the inventory. Colours and part numbers use the LDraw catalogue.'),
+    messages=[('01','Sort the parts using the inventory. Match each part number and model colour code.'),
               ('02','Build numbered assemblies first. Repeat an assembly only for the stated total number of copies.'),
               ('03','The parts box shows new pieces. The small view shows another angle or a numbered assembly. Arrows link assemblies to their placement step.'),
               ('04','For the Letter booklet PDF, print at actual size, two-sided, flip on the short edge. Fold the sheets together.'),
@@ -241,7 +241,7 @@ def write_creator(folder,manual,parts,target,plan,template,icons):
     book.begin('completion',1)
     book.text('Build complete',18,32,size=20,role='Bold')
     book.image(folder/manual['final_images'][0],(40,53,302,152),component='completed_model')
-    book.text('Created with LDraw Nova and LeoCAD. Parts geometry: LDraw Parts Library.',18,222,size=7,role='Regular',width=345)
+    book.text('Created with LEGO Nova and LeoCAD. Parts geometry: LDraw Parts Library.',18,222,size=7,role='Regular',width=345)
     book.text('LEGO is a trademark of the LEGO Group. This independent guide has no LEGO endorsement.',18,239,size=6.4,role='Regular',width=345)
     book.end();book.pdf.save()
     return book.number
@@ -264,6 +264,6 @@ def impose_letter(source,target):
                 x=slot*396+(396-w*scale)/2;y=(612-h*scale)/2
                 side.merge_transformed_page(page,Transformation().scale(scale).translate(x,y))
             order.append([p+1 if p<count else None for p in pair])
-    writer.add_metadata({'/Title':'US Letter folded booklet - print actual size, duplex short edge','/Creator':'LDraw Nova'})
+    writer.add_metadata({'/Title':'US Letter folded booklet - print actual size, duplex short edge','/Creator':'LEGO Nova'})
     with open(target,'wb') as stream:writer.write(stream)
     return {'sheet_size':[792,612],'page_order':order,'source_pages':count,'padded_pages':padded,'print':'Actual size; two-sided; flip short edge; fold on the vertical centre'}

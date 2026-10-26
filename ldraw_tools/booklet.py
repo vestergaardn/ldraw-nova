@@ -101,7 +101,7 @@ class Booklet:
     def __init__(self, target, title):
         self.pdf = canvas.Canvas(str(target), pagesize=PAGE, pageCompression=1)
         self.pdf.setTitle(clean(title) + ' - Assembly guide')
-        self.pdf.setAuthor('LDraw Nova')
+        self.pdf.setAuthor('LEGO Nova')
         self.title = clean(title)
         self.pages = 0
 
@@ -125,7 +125,7 @@ class Booklet:
             top -= self.text(subtitle, MARGIN, top, WIDTH, 9, color=MUTED) + 12
         c.setStrokeColor(colors.HexColor('#D8E0E4'))
         c.line(MARGIN, 35, PAGE[0] - MARGIN, 35)
-        self.text('LDRAW NOVA / ASSEMBLY GUIDE', MARGIN, 26, WIDTH - 28, 7, color=MUTED)
+        self.text('LEGO NOVA / ASSEMBLY GUIDE', MARGIN, 26, WIDTH - 28, 7, color=MUTED)
         c.setFont('Helvetica', 8)
         c.setFillColor(MUTED)
         c.drawRightString(PAGE[0] - MARGIN, 18, str(self.pages))
@@ -244,7 +244,7 @@ def write_pdf(folder, manual, parts, target):
     for text in [
         'Compare your model with the finished view. Check that every piece is seated securely.',
         'The model source and rendered parts list agree. The assembly sequence and physical connections need your review.',
-        'Created with LDraw Nova and LeoCAD. Parts geometry: the LDraw Parts Library. LEGO is a trademark of the LEGO Group.',
+        'Created with LEGO Nova and LeoCAD. Parts geometry: the LDraw Parts Library. LEGO is a trademark of the LEGO Group.',
         'Source: ' + manual['source']['model'],
     ]:
         top -= booklet.text(text, MARGIN, top, WIDTH, 9) + 13
